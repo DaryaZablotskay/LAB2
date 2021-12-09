@@ -177,7 +177,14 @@ public class Main {
                     textFieldResult.setText("0");
                 }
             });
-            
+            //создание кнопки "MC"
+            JButton buttonMC = new JButton("MC");
+            buttonMC.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent ev){
+                    memory = (double) 0;
+                    textFieldMemory.setText("0");
+                }
+            });
         }
     }
 }
