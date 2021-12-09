@@ -1,5 +1,10 @@
 package bsu.rfe.java.group6.lab2.Zablotskaya.varA12;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import java.awt.Color;
@@ -115,7 +120,7 @@ public class Main {
 
             //создание области для вывода памяти
             JLabel labelForMemory = new JLabel("Память:");
-            textFieldMemory = new JTextField("0",15);
+            textFieldMemory = new JTextField("0", 15);
             textFieldMemory.setMaximumSize(
                     textFieldMemory.getPreferredSize());
 
@@ -138,8 +143,7 @@ public class Main {
                         Double z = Double.parseDouble(textFieldZ.getText());
                         if (formulaId == 1) {
                             result = calculate1(x, y, z);
-                        }
-                        else {
+                        } else {
                             result = calculate2(x, y, z);
                         }
                         textFieldResult.setText(result.toString());
@@ -157,7 +161,7 @@ public class Main {
                 public void actionPerformed(ActionEvent ev) {
                     try {
                         Double result = Double.parseDouble(textFieldResult.getText());
-                        memory+=result;
+                        memory += result;
                         textFieldMemory.setText(memory.toString());
 
                     } catch (NumberFormatException ex) {
@@ -179,13 +183,43 @@ public class Main {
             });
             //создание кнопки "MC"
             JButton buttonMC = new JButton("MC");
-            buttonMC.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent ev){
+            buttonMC.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent ev) {
                     memory = (double) 0;
                     textFieldMemory.setText("0");
                 }
             });
+            Box hboxButtons = Box.createHorizontalBox();
+            hboxButtons.add(Box.createHorizontalGlue());
+            hboxButtons.add(buttonCalc);
+            hboxButtons.add(Box.createHorizontalStrut(30));
+            hboxButtons.add(calculate);
+            hboxButtons.add(Box.createHorizontalStrut(30));
+            hboxButtons.add(buttonReset);
+            hboxButtons.add(Box.createHorizontalStrut(30));
+            hboxButtons.add(buttonMC);
+            hboxButtons.add(Box.createHorizontalGlue());
+            hboxButtons.setBorder(
+                    BorderFactory.createLineBorder(Color.GREEN));
+// Связать области воедино в компоновке BoxLayout
+            Box contentBox = Box.createVerticalBox();
+            contentBox.add(Box.createVerticalGlue());
+            contentBox.add(hboxFormulaType);
+            contentBox.add(hboxVariables);
+            contentBox.add(hboxResult);
+            contentBox.add(hboxMemory);
+            contentBox.add(hboxButtons);
+            contentBox.add(Box.createVerticalGlue());
+            getContentPane().add(contentBox, BorderLayout.CENTER);
         }
+
+    }
+
+    //реализация главного метода main()
+    public static void main(String[] args) {
+        MainFrame frame = new MainFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
 
