@@ -167,6 +167,17 @@ public class Main {
                     }
                 }
             });
+            //создание кнопки "ОЧИСТИТЬ ПОЛЯ"
+            JButton buttonReset = new JButton("Очистить");
+            buttonReset.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent ev) {
+                    textFieldX.setText("0");
+                    textFieldY.setText("0");
+                    textFieldZ.setText("0");
+                    textFieldResult.setText("0");
+                }
+            });
+            
         }
     }
 }
