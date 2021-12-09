@@ -151,6 +151,22 @@ public class Main {
                     }
                 }
             });
+            //создание кнопки "M+"
+            JButton calculate = new JButton("M+");
+            calculate.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent ev) {
+                    try {
+                        Double result = Double.parseDouble(textFieldResult.getText());
+                        memory+=result;
+                        textFieldMemory.setText(memory.toString());
+
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(MainFrame.this,
+                                "Ошибка в формате записи числа с плавающей точкой", "Ошибочный формат числа",
+                                JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            });
         }
     }
 }
